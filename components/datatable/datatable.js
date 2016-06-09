@@ -206,6 +206,7 @@ var DataTable = (function () {
         if (!column.sortable) {
             return;
         }
+        this.sortField = column.field;
         if (this.lazy) {
             this.onLazyLoad.emit(this.createLazyLoadMetadata());
         }
@@ -220,7 +221,6 @@ var DataTable = (function () {
             }
             else {
                 this.sortOrder = (this.sortField === column.field) ? this.sortOrder * -1 : 1;
-                this.sortField = column.field;
                 this.sortColumn = column;
                 this.sortSingle();
             }
