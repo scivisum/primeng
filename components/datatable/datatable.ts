@@ -50,7 +50,7 @@ import {DomHandler} from '../dom/domhandler';
                                 <div class="ui-selectbutton">
                                     <span class="fa fa-search"></span>
                                     <input type="text" pInputText class="ui-column-filter" *ngIf="col.filter" [value]="filters[col.field] ? filters[col.field].value : ''" (click)="onFilterInputClick($event)" (keyup)="onFilterKeyup($event.target.value, col.field, col.filterMatchMode)" style="display: inline-block; width: auto; min-width: 10em;"/>
-                                <div>
+                                </div>
                             </th>
                         </tr>
                     </thead>
