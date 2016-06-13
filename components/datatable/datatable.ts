@@ -32,9 +32,9 @@ import {DomHandler} from '../dom/domhandler';
                                 <span class="ui-column-title">{{col.header}}</span>
                                 <span class="ui-sortable-column-icon fa fa-fw fa-sort" *ngIf="col.sortable"
                                      [ngClass]="{'fa-sort-desc': (getSortOrder(col) == -1),'fa-sort-asc': (getSortOrder(col) == 1)}"></span>
-                                <div class="ui-selectbutton">
+                                <div class="ui-selectbutton" *ngIf="col.filter">
                                     <span class="fa fa-search"></span>
-                                    <input type="text" pInputText class="ui-column-filter" *ngIf="col.filter" [value]="filters[col.field] ? filters[col.field].value : ''" (click)="onFilterInputClick($event)" (keyup)="onFilterKeyup($event.target.value, col.field, col.filterMatchMode)" style="display: inline-block; width: auto; min-width: 10em;"/>
+                                    <input type="text" pInputText class="ui-column-filter" [value]="filters[col.field] ? filters[col.field].value : ''" (click)="onFilterInputClick($event)" (keyup)="onFilterKeyup($event.target.value, col.field, col.filterMatchMode)" style="display: inline-block; width: auto; min-width: 10em;"/>
                                 </div>
                             </th>
                         </tr>
@@ -47,9 +47,9 @@ import {DomHandler} from '../dom/domhandler';
                                 <span class="ui-column-title">{{col.header}}</span>
                                 <span class="ui-sortable-column-icon fa fa-fw fa-sort" *ngIf="col.sortable"
                                      [ngClass]="{'fa-sort-desc': (getSortOrder(col) == -1),'fa-sort-asc': (getSortOrder(col) == 1)}"></span>
-                                <div class="ui-selectbutton">
+                                <div class="ui-selectbutton" *ngIf="col.filter">
                                     <span class="fa fa-search"></span>
-                                    <input type="text" pInputText class="ui-column-filter" *ngIf="col.filter" [value]="filters[col.field] ? filters[col.field].value : ''" (click)="onFilterInputClick($event)" (keyup)="onFilterKeyup($event.target.value, col.field, col.filterMatchMode)" style="display: inline-block; width: auto; min-width: 10em;"/>
+                                    <input type="text" pInputText class="ui-column-filter" [value]="filters[col.field] ? filters[col.field].value : ''" (click)="onFilterInputClick($event)" (keyup)="onFilterKeyup($event.target.value, col.field, col.filterMatchMode)" style="display: inline-block; width: auto; min-width: 10em;"/>
                                 </div>
                             </th>
                         </tr>
