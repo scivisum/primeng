@@ -128,9 +128,6 @@ var DataTable = (function () {
                 }, _this.filterDelay);
             });
         }
-        if (!this.multiSortMeta) {
-            this.multiSortMeta = [];
-        }
     };
     DataTable.prototype.ngDoCheck = function () {
         var changes = this.differ.diff(this.value);
@@ -212,6 +209,9 @@ var DataTable = (function () {
         }
         else {
             if (this.sortMode == 'multiple') {
+                if (!this.multiSortMeta) {
+                    this.multiSortMeta = [];
+                }
                 var meta = this.multiSortMeta.filter(function (m) { return m.field === column.field; }), sortOrder = meta.length ? (meta[0].order + 2) % 3 - 1 : 1;
                 this.addSortMeta({ field: this.sortField, order: sortOrder });
                 this.sortMultiple();
