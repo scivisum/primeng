@@ -264,7 +264,7 @@ var DataTable = (function () {
     };
     DataTable.prototype.sortMultiple = function () {
         var _this = this;
-        if (this.value) {
+        if (this.value && this.multiSortMeta.length) {
             this.value.sort(function (data1, data2) {
                 return _this.multisortField(data1, data2, _this.multiSortMeta, 0);
             });
