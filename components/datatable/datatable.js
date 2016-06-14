@@ -213,11 +213,13 @@ var DataTable = (function () {
                     this.multiSortMeta = [];
                 }
                 var meta = this.multiSortMeta.filter(function (m) { return m.field === column.field; }), sortOrder = meta.length ? (meta[0].order + 2) % 3 - 1 : 1;
-                this.addSortMeta({ field: this.sortField, order: sortOrder });
-                this.sortMultiple();
                 if (sortOrder === 0) {
                     this.multiSortMeta = this.multiSortMeta.filter(function (m) { return m.field !== column.field; });
                 }
+                else {
+                    this.addSortMeta({ field: this.sortField, order: sortOrder });
+                }
+                this.sortMultiple();
             }
             else {
                 this.sortOrder = (this.sortField === column.field) ? this.sortOrder * -1 : 1;
