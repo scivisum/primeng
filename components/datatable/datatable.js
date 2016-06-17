@@ -41,6 +41,7 @@ var DataTable = (function () {
         this.sortMode = 'single';
         this.sortOrder = 1;
         this.csvSeparator = ',';
+        this.idField = null;
         this.onEditInit = new core_1.EventEmitter();
         this.onEditComplete = new core_1.EventEmitter();
         this.onEdit = new core_1.EventEmitter();
@@ -744,6 +745,9 @@ var DataTable = (function () {
         if (!this.expandedRows) {
             this.expandedRows = [];
         }
+        if (this.idField) {
+            row = row[this.idField];
+        }
         var expandedRowIndex = this.findExpandedRowIndex(row);
         if (expandedRowIndex != -1) {
             this.expandedRows.splice(expandedRowIndex, 1);
@@ -986,6 +990,10 @@ var DataTable = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], DataTable.prototype, "csvSeparator", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], DataTable.prototype, "idField", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)

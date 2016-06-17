@@ -46,6 +46,7 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, OnIni
     multiSortMeta: SortMeta[];
     contextMenu: any;
     csvSeparator: string;
+    idField: string;
     onEditInit: EventEmitter<any>;
     onEditComplete: EventEmitter<any>;
     onEdit: EventEmitter<any>;
