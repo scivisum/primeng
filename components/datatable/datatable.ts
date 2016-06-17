@@ -233,6 +233,8 @@ export class DataTable implements AfterViewChecked,AfterViewInit,OnInit,DoCheck 
 
     @Input() csvSeparator: string = ',';
 
+    @Input() idField: string = null;
+
     @Output() onEditInit: EventEmitter<any> = new EventEmitter();
 
     @Output() onEditComplete: EventEmitter<any> = new EventEmitter();
@@ -474,12 +476,13 @@ export class DataTable implements AfterViewChecked,AfterViewInit,OnInit,DoCheck 
                 let meta =  this.multiSortMeta.filter(m => m.field === column.field),
                     sortOrder = meta.length ? (meta[0].order + 2) % 3 - 1 : 1;
 
-                this.addSortMeta({ field: this.sortField, order: sortOrder });
-                this.sortMultiple();
-
                 if (sortOrder === 0) {
-                    this.multiSortMeta = this.multiSortMeta.filter(m => m.field !== column.field);
+                    this.multiSortMeta = this.multiSortMeta.filter(function (m) { return m.field !== column.field; });
+                } else {
+                    this.addSortMeta({ field: this.sortField, order: sortOrder });
                 }
+
+                this.sortMultiple();
             }
             else {
                 this.sortOrder = (this.sortField === column.field)  ? this.sortOrder * -1 : 1;
@@ -530,7 +533,7 @@ export class DataTable implements AfterViewChecked,AfterViewInit,OnInit,DoCheck 
     }
 
     sortMultiple() {
-        if(this.value) {
+        if(this.value && this.multiSortMeta.length) {
             this.value.sort((data1,data2) => {
                 return this.multisortField(data1, data2, this.multiSortMeta, 0);
             });
@@ -1144,6 +1147,9 @@ export class DataTable implements AfterViewChecked,AfterViewInit,OnInit,DoCheck 
     toggleRow(row: any) {
         if(!this.expandedRows) {
             this.expandedRows = [];
+        }
+        if (this.idField) {
+            row = row[this.idField];
         }
 
         let expandedRowIndex = this.findExpandedRowIndex(row);
