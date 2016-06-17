@@ -761,16 +761,14 @@ var DataTable = (function () {
     DataTable.prototype.findExpandedRowIndex = function (row) {
         var index = -1;
         if (this.expandedRows) {
-            for (var i = 0; i < this.expandedRows.length; i++) {
-                if (this.expandedRows[i] == row) {
-                    index = i;
-                    break;
-                }
-            }
+            return this.expandedRows.indexOf(row);
         }
         return index;
     };
     DataTable.prototype.isRowExpanded = function (row) {
+        if (this.idField) {
+            row = row[this.idField];
+        }
         return this.findExpandedRowIndex(row) != -1;
     };
     DataTable.prototype.reset = function () {
